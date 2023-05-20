@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { IonItem, IonLabel, IonList, IonTitle } from '@ionic/react'
+import { IonItem, IonLabel, IonList, IonRadio, IonRadioGroup, IonTitle } from '@ionic/react'
 
 import style from './test.module.scss'
 
@@ -18,26 +18,51 @@ const questions: Iquestions[] = [
 	{
 		title: 'Что значит днк?',
 		variants: ['х', 'вып', 'выап'],
-		correct: 0,
+		correct: 1,
 	},
 ]
 
-const Test = () => {
+export const Test = () => {
 	const [step, setStep] = useState<number>(0)
 	const question = questions[step]
+	const percentage = Math.round((step / questions.length) * 100)
+	const [correct, setCorrect] = useState<number>(0)
+
+	const onClickVariant = (index) => {
+		console.log(step, index)
+	}
+
+	if (step === questions.length) {
+		return <Result correct={correct} />
+	}
+
+	console.log(question)
 	return (
-		<>
-			<div>
-				<div></div>
+		<div className={'col w-[30%]'}>
+			<div className={style.prog}>
+				<div style={{ width: `${percentage}%`, background: '#000' }}></div>
 			</div>
-			<IonTitle></IonTitle>
-			<IonList>
-				{questions.variants(() => (
-					<IonItem>
-						<IonLabel>{}</IonLabel>
-					</IonItem>
-				))}
+			<IonTitle>{question.title}</IonTitle>
+			<IonList className={'cursor-pointer'}>
+				<IonRadioGroup>
+					{question.variants.map((data, index) => (
+						<IonItem onClick={() => onClickVariant(index)} key={index}>
+							<IonLabel>{data}</IonLabel>
+							<IonRadio slot={'end'} value={index}></IonRadio>
+						</IonItem>
+					))}
+				</IonRadioGroup>
 			</IonList>
-		</>
+		</div>
+	)
+}
+
+const Result = ({ correct }) => {
+	return (
+		<IonItem>
+			<IonTitle>
+				Спасибо за прохождение теста вы ответили на {correct} из {questions.length}
+			</IonTitle>
+		</IonItem>
 	)
 }
