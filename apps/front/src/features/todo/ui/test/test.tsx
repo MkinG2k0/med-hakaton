@@ -11,24 +11,8 @@ import {
 
 import style from './test.module.scss'
 
-interface Iquestions {
-	title: string
-	variants: string[]
-	correct: number
-}
-
-const questions: Iquestions[] = [
-	{
-		title: 'скольок хромосом у здорового человека?',
-		variants: ['20', '25', '46', '33'],
-		correct: 0,
-	},
-	{
-		title: 'Что значит днк?',
-		variants: ['х', 'вып', 'выап', '324'],
-		correct: 1,
-	},
-]
+import { questions } from '~/shared/constant/questions'
+import { Result } from '~/features/todo/ui/result/result'
 
 export const Test = () => {
 	const [step, setStep] = useState<number>(0)
@@ -37,7 +21,6 @@ export const Test = () => {
 	const [correct, setCorrect] = useState<number>(0)
 
 	const onClickVariant = (index) => {
-		console.log(step, index)
 		setStep(step + 1)
 
 		if (index === question.correct) {
@@ -49,7 +32,6 @@ export const Test = () => {
 		return <Result correct={correct} />
 	}
 
-	console.log(question)
 	return (
 		<div className={'col w-[30%]'}>
 			<div className={style.prog}>
@@ -59,6 +41,7 @@ export const Test = () => {
 						width: `${percentage}%`,
 						height: '100%',
 						background: '#000',
+						transition: '.5s ease-in-out',
 					}}
 				></div>
 			</div>
@@ -76,15 +59,5 @@ export const Test = () => {
 				</IonRadioGroup>
 			</IonList>
 		</div>
-	)
-}
-
-const Result = ({ correct }) => {
-	return (
-		<IonItem>
-			<IonTitle>
-				Спасибо за прохождение теста вы ответили на {correct} из {questions.length}
-			</IonTitle>
-		</IonItem>
 	)
 }
