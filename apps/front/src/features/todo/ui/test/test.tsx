@@ -1,5 +1,13 @@
 import { useState } from 'react'
-import { IonItem, IonLabel, IonList, IonRadio, IonRadioGroup, IonTitle } from '@ionic/react'
+import {
+	IonButton,
+	IonItem,
+	IonLabel,
+	IonList,
+	IonRadio,
+	IonRadioGroup,
+	IonTitle,
+} from '@ionic/react'
 
 import style from './test.module.scss'
 
@@ -12,12 +20,12 @@ interface Iquestions {
 const questions: Iquestions[] = [
 	{
 		title: 'скольок хромосом у здорового человека?',
-		variants: ['20', '25', '46'],
+		variants: ['20', '25', '46', '33'],
 		correct: 0,
 	},
 	{
 		title: 'Что значит днк?',
-		variants: ['х', 'вып', 'выап'],
+		variants: ['х', 'вып', 'выап', '324'],
 		correct: 1,
 	},
 ]
@@ -30,6 +38,11 @@ export const Test = () => {
 
 	const onClickVariant = (index) => {
 		console.log(step, index)
+		setStep(step + 1)
+
+		if (index === question.correct) {
+			setCorrect(correct + 1)
+		}
 	}
 
 	if (step === questions.length) {
@@ -40,16 +53,25 @@ export const Test = () => {
 	return (
 		<div className={'col w-[30%]'}>
 			<div className={style.prog}>
-				<div style={{ width: `${percentage}%`, background: '#000' }}></div>
+				<div
+					style={{
+						position: 'absolute',
+						width: `${percentage}%`,
+						height: '100%',
+						background: '#000',
+					}}
+				></div>
 			</div>
 			<IonTitle>{question.title}</IonTitle>
 			<IonList className={'cursor-pointer'}>
 				<IonRadioGroup>
 					{question.variants.map((data, index) => (
-						<IonItem onClick={() => onClickVariant(index)} key={index}>
-							<IonLabel>{data}</IonLabel>
-							<IonRadio slot={'end'} value={index}></IonRadio>
-						</IonItem>
+						<>
+							<IonItem onClick={() => onClickVariant(index)} key={index}>
+								<IonLabel>{data}</IonLabel>
+								<IonRadio slot={'end'} value={index}></IonRadio>
+							</IonItem>
+						</>
 					))}
 				</IonRadioGroup>
 			</IonList>
