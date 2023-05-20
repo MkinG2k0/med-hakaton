@@ -1,0 +1,7 @@
+.row {
+	@apply flex gap-2 ;
+}
+
+.col {
+	@apply flex flex-col gap-2 ;
+}

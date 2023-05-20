@@ -1,0 +1,16 @@
+{
+  "name": "vitest-config",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "main": "index.ts",
+  "devDependencies": {
+    "vite": "^4.3.5",
+    "vitest": "^0.31.0",
+    "@testing-library/jest-dom/": "^5.16.5",
+    "@testing-library/react": "^14.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
