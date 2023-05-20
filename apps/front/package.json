@@ -6,7 +6,7 @@
   "license": "ISC",
   "private": false,
   "scripts": {
-    "dev": "vite ",
+    "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "build:mobile": "concurrently -m 1 \"pnpm build \" \"pnpm cap:copy \" ",
