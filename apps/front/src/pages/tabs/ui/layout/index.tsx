@@ -15,7 +15,7 @@ export const TabsLayout: FC<TabsProps> = ({ children }) => {
 					<IonTitle>Listen now</IonTitle>
 				</IonToolbar>
 			</IonHeader>
-			<div className={'flex-auto p-2 overflow-auto'}>{children}</div>
+			<div className={'flex-auto p-4 overflow-auto'}>{children}</div>
 			<div className={style.tabs}>
 				<Map data={tabBtns()} item={TabBtn} />
 			</div>
