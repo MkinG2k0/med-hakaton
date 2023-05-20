@@ -1,14 +1,13 @@
 import { IonIcon, IonLabel, IonTabButton } from '@ionic/react'
-import { RouteInstance, RouteParams } from 'atomic-router'
-import { Link, LinkProps } from 'atomic-router-react'
 import React from 'react'
+import { Link, NavLinkProps } from 'react-router-dom'
 
-export interface TabBtnProps<Params extends RouteParams> extends LinkProps<Params> {
+export interface TabBtnProps extends NavLinkProps {
 	icon: string
 	text: string
 }
 
-export const TabBtn = <Params extends RouteParams>({ icon, text, to }: TabBtnProps<Params>) => {
+export const TabBtn = ({ icon, text, to }: TabBtnProps) => {
 	return (
 		<Link to={to} className={'select-none mx-5 w-20 '}>
 			<IonTabButton>

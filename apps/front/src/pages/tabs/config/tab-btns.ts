@@ -1,13 +1,10 @@
-import { RouteParams } from 'atomic-router'
-import { homeOutline, flashOutline, readerOutline } from 'ionicons/icons'
+import { readerOutline, personCircle, receiptOutline, podiumOutline } from 'ionicons/icons'
 
-import { mainRoute } from 'pages/main'
-import { todoRoute } from 'pages/tab-todos'
-import { tabsRoute } from 'pages/tabs/config/route'
-import { TabBtnProps } from 'pages/tabs/ui/tab-btn'
+import { NAV } from '~/shared'
 
-export const tabBtns = (): TabBtnProps<RouteParams>[] => [
-	{ icon: readerOutline, text: 'todos', to: todoRoute },
-	{ icon: homeOutline, text: 'main', to: tabsRoute },
-	{ icon: flashOutline, text: 'welcome', to: mainRoute },
+export const tabBtns = (): { icon: any; text: string; to: string }[] => [
+	{ icon: receiptOutline, text: '', to: NAV.TAB_SPEC }, //Специальность
+	{ icon: podiumOutline, text: '', to: NAV.TAB_ACTIVE }, //Активность
+	{ icon: readerOutline, text: '', to: NAV.TAB_TEST }, //Тесты
+	{ icon: personCircle, text: '', to: NAV.TAB_PROFILE }, //Профиль
 ]

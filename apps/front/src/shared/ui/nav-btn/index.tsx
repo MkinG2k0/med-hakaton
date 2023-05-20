@@ -1,28 +1,22 @@
 import { IonButton } from '@ionic/react'
-import { RouteParams } from 'atomic-router'
-import { Link, LinkProps } from 'atomic-router-react'
+import { useNavigate } from 'react-router-dom'
 
 export type IonButtonProps = Parameters<typeof IonButton>[number]
 
-export interface NavBtnProps<Params extends RouteParams>
-	extends IonButtonProps,
-		Pick<LinkProps<Params>, 'to' | 'params'> {
-	classNameBtn?: string
+interface NavBtnProps extends IonButtonProps {
+	to: string
 }
+export const NavBtn: FC<NavBtnProps> = ({ children, to, onClick, ...props }) => {
+	const navigate = useNavigate()
 
-export const NavBtn = <T extends RouteParams>({
-	children,
-	to,
-	params,
-	className,
-	classNameBtn,
-	...props
-}: NavBtnProps<T>) => {
+	const onNavigate = (e) => {
+		onClick?.(e)
+		navigate(to)
+	}
+
 	return (
-		<Link to={to} params={params} className={className}>
-			<IonButton {...props} className={classNameBtn}>
-				{children}
-			</IonButton>
-		</Link>
+		<IonButton {...props} onClick={onNavigate}>
+			{children}
+		</IonButton>
 	)
 }

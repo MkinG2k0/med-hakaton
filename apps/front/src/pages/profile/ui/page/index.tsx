@@ -1,7 +1,9 @@
 import style from './profile.module.scss'
 
+import { TabsLayout } from '~/pages/tabs'
+
 const profile: FC = () => {
-	return <div className={style.wrap}>profile</div>
+	return <div>profile</div>
 }
 
 export default profile

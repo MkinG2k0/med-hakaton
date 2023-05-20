@@ -1,11 +1,9 @@
 import { IonHeader, IonTitle, IonToolbar } from '@ionic/react'
 import { Map } from 'react-easy-map'
-
-import style from './tabs.module.scss'
-
 import { tabBtns } from 'pages/tabs/config/tab-btns'
 import { TabBtn } from 'pages/tabs/ui/tab-btn'
 
+import style from './tabs.module.scss'
 
 interface TabsProps {}
 

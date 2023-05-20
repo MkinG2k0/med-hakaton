@@ -1,8 +1,9 @@
 import { IonInput, IonItem, IonTitle } from '@ionic/react'
 import { FC } from 'react'
-
 import { tabsRoute } from 'pages/tabs'
-import { NavBtn } from 'shared'
+import { NAV, NavBtn } from 'shared'
+
+import { activeRoute } from '~/pages/active/config'
 
 interface authProps {}
 
@@ -18,10 +19,10 @@ const Auth: FC<authProps> = ({}) => {
 					<IonInput placeholder={'Enter password'} type={'password'}></IonInput>
 				</IonItem>
 				<div className={'row  w-full'}>
-					<NavBtn className={'flex-auto'} classNameBtn={'w-full'} to={tabsRoute} fill={'outline'}>
+					<NavBtn className={'flex-auto'} to={NAV.TAB_TEST} fill={'outline'}>
 						Register
 					</NavBtn>
-					<NavBtn className={'flex-auto'} classNameBtn={'w-full'} to={tabsRoute}>
+					<NavBtn className={'flex-auto'} to={NAV.TAB_TEST}>
 						Login
 					</NavBtn>
 				</div>

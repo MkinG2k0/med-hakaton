@@ -1,22 +1,32 @@
-import { RouterProvider, Route } from 'atomic-router-react'
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
 
-import { authRoute } from 'pages/auth/config'
-import Auth from 'pages/auth/ui/page'
-import { mainRoute } from 'pages/main'
-import Main from 'pages/main/ui/page'
-import { todoRoute } from 'pages/tab-todos'
-import Todo from 'pages/tab-todos/ui/page'
-import { tabsRoute } from 'pages/tabs'
-import Tabs from 'pages/tabs/ui/page'
-import { router } from 'shared/config/routing'
+import { TabsLayout } from '~/pages/tabs'
+import { AuthPages, NoAuthPages } from '~/shared/constant/pages'
 
 export const Pages: FC = () => {
+	// const { isAuth } = useAuth()
+	const isAuth = true
+
+	if (isAuth) {
+		return (
+			<TabsLayout>
+				<Routes>
+					{AuthPages.map(({ path, Component }) => (
+						<Route key={path} path={path} element={<Component />} />
+					))}
+				</Routes>
+			</TabsLayout>
+		)
+	}
+
 	return (
-		<RouterProvider router={router}>
-			<Route route={mainRoute} view={Main} />
-			<Route route={authRoute} view={Auth} />
-			<Route route={todoRoute} view={Todo} />
-			<Route route={tabsRoute} view={Tabs} />
-		</RouterProvider>
+		<TabsLayout>
+			<Routes>
+				{NoAuthPages.map(({ path, Component }) => (
+					<Route key={path} path={path} element={<Component />} />
+				))}
+			</Routes>
+		</TabsLayout>
 	)
 }

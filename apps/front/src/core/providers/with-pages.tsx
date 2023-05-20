@@ -1,8 +1,5 @@
 import { IonRouterOutlet } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
-import { Route } from 'react-router-dom'
-
-import { authPages } from 'shared/constant/pages'
 
 export const WithPages = (component: FC) => (props) => {
 	return (

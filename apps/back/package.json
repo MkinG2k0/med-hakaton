@@ -29,6 +29,7 @@
   "devDependencies": {
     "eslint-config-custom": "workspace:*",
     "prettier-config": "workspace:*",
+    "ent-types": "workspace:*",
 
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",

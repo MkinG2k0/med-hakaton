@@ -1,7 +1,9 @@
 import style from './list-test.module.scss'
 
+import { TabsLayout } from '~/pages/tabs'
+
 const listTest: FC = () => {
-	return <div className={style.wrap}>list-test</div>
+	return <div>list-test</div>
 }
 
 export default listTest
