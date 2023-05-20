@@ -1,43 +1,63 @@
 import { useState } from 'react'
-import { IonItem, IonLabel, IonList, IonTitle } from '@ionic/react'
+import {
+	IonButton,
+	IonItem,
+	IonLabel,
+	IonList,
+	IonRadio,
+	IonRadioGroup,
+	IonTitle,
+} from '@ionic/react'
 
 import style from './test.module.scss'
 
-interface Iquestions {
-	title: string
-	variants: string[]
-	correct: number
-}
+import { questions } from '~/shared/constant/questions'
+import { Result } from '~/features/todo/ui/result/result'
 
-const questions: Iquestions[] = [
-	{
-		title: 'скольок хромосом у здорового человека?',
-		variants: ['20', '25', '46'],
-		correct: 0,
-	},
-	{
-		title: 'Что значит днк?',
-		variants: ['х', 'вып', 'выап'],
-		correct: 0,
-	},
-]
-
-const Test = () => {
+export const Test = () => {
 	const [step, setStep] = useState<number>(0)
 	const question = questions[step]
+	const percentage = Math.round((step / questions.length) * 100)
+	const [correct, setCorrect] = useState<number>(0)
+
+	const onClickVariant = (index) => {
+		setStep(step + 1)
+
+		if (index === question.correct) {
+			setCorrect(correct + 1)
+		}
+	}
+
+	if (step === questions.length) {
+		return <Result correct={correct} />
+	}
+
 	return (
-		<>
-			<div>
-				<div></div>
+		<div className={'col w-[30%]'}>
+			<div className={style.prog}>
+				<div
+					style={{
+						position: 'absolute',
+						width: `${percentage}%`,
+						height: '100%',
+						background: '#000',
+						transition: '.5s ease-in-out',
+					}}
+				></div>
 			</div>
-			<IonTitle></IonTitle>
-			<IonList>
-				{questions.variants(() => (
-					<IonItem>
-						<IonLabel>{}</IonLabel>
-					</IonItem>
-				))}
+			<IonTitle>{question.title}</IonTitle>
+			<IonList className={'cursor-pointer'}>
+				<IonRadioGroup>
+					{question.variants.map((data, index) => (
+						<>
+							<IonItem onClick={() => onClickVariant(index)} key={index}>
+								<IonLabel>{data}</IonLabel>
+								<IonRadio slot={'end'} value={index}></IonRadio>
+							</IonItem>
+						</>
+					))}
+				</IonRadioGroup>
 			</IonList>
-		</>
+		</div>
 	)
 }
