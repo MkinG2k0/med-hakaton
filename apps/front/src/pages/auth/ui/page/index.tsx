@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { tabsRoute } from 'pages/tabs'
 import { NAV, NavBtn } from 'shared'
 
+import { Test } from '~/features/todo/ui/test/test'
 import { ListEmployee } from '~/features/todo/ui/list-employee'
 import { activeRoute } from '~/pages/active/config'
 

@@ -33,5 +33,9 @@ export const AuthPages = [
 		path: NAV.TAB_ACTIVE,
 		Component: lazy(() => import('~/pages/active/ui/page')),
 	},
+	{
+		path: NAV.TAB_SPEC,
+		Component: lazy(() => import('~/pages/active/ui/page')),
+	},
 	...NoAuthPages,
 ]
